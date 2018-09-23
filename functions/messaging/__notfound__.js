@@ -1,8 +1,6 @@
 const lib = require('lib')({ token: process.env.STDLIB_TOKEN })
 const send = require('../../helpers/send.js')
 
-const DEMO_REGEX = /^\s*what\s*do\s*you\s*think\s*of\s*([^\s\?]*)\s*.*$/gi
-
 /**
 * Not found handler - handles all SMS that don't match a command
 *   (i.e. "more" = functions/messaging/more.js)
@@ -15,24 +13,13 @@ const DEMO_REGEX = /^\s*what\s*do\s*you\s*think\s*of\s*([^\s\?]*)\s*.*$/gi
 var async = require("async");
 var waAnswer = "5";
 module.exports = async (sender = '', receiver = '', message = '', createdDatetime = '', context) => {
-  if (message.match(DEMO_REGEX)) {
-    // We matched some regex
-    let matches = new RegExp(DEMO_REGEX).exec(message)
-    let item = matches[1].toLowerCase()
-    return send(
-      receiver,
-      sender,
-      `I don't like ${item}. It's coarse and rough and irritating and it gets everywhere`
-    )
-  } else {
-    const WolframAlphaAPI = require('wolfram-alpha-api');
-    const waApi = WolframAlphaAPI('LK9TLV-2JWH4EJ7WL');
-    const formatAnswer = answer => `${answer}`;
-    waAnswer = await waApi.getShort(message);
-    return send(
-      receiver,
-      sender,
-      waAnswer
-    )
-  }
+  const WolframAlphaAPI = require('wolfram-alpha-api');
+  const waApi = WolframAlphaAPI('LK9TLV-2JWH4EJ7WL');
+  const formatAnswer = answer => `${answer}`;
+  waAnswer = await waApi.getShort(message);
+  return send(
+    receiver,
+    sender,
+    waAnswer
+  )
 }
