@@ -1,0 +1,27 @@
+{
+  "name": "SMSearch",
+  "version": "0.0.0",
+  "description": "",
+  "author": "jennifer-c <jennifer.zhen.cheng@gmail.com>",
+  "main": "functions/__main__.js",
+  "dependencies": {
+    "async": "^2.6.1",
+    "lib": "^3.0.1",
+    "wolfram-alpha-api": "https://products.wolframalpha.com/api/libraries/javascript/wolfram-alpha-api-1.0.0-rc.1.tgz"
+  },
+  "private": true,
+  "stdlib": {
+    "build": "faaslang",
+    "name": "jennifer-c/SMSearch",
+    "timeout": 10000,
+    "publish": true,
+    "personalize": {
+      "keys": [],
+      "user": []
+    },
+    "source": "@messagebird/messagehub/0.1.6"
+  },
+  "devDependencies": {
+    "standard": "^10.0.3"
+  }
+}
