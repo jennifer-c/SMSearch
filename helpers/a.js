@@ -1,5 +1,4 @@
 const WolframAlphaAPI = require('wolfram-alpha-api');
-const waApi = WolframAlphaAPI('LK9TLV-2JWH4EJ7WL');
 const formatAnswer = answer => `${answer}`;
 function getData() {
     waApi.getShort('20! seconds in years').then((data) => {
